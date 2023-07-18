@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=“stylesheet” href=“style.css”>
+    <script src=“script.js”></script>
+    <title>MATH TABLE</title>
+    <style>
+        h1 {
+        margin-top: 50px;
+        text-align: center;
+        font-size: larger;
+        font-size: x-large;
+      }
+      body{
+        font-family: Arial, sans-serif;
+        text-align: center;
+        font-style:bold;
+        background-color: gray;
+      }
+      input {
+        margin:20px;
+        width: 15%;
+        padding: 5px 5px;
+        box-sizing: content-box;
+        margin: 8px;
+        background-color:white;
+        height: 30px;
+      }
+      table {
+      border-collapse: collapse;
+      background-color: aliceblue;
+    
+    }
+    th, td {
+      padding: 8px;
+      border: 1px solid black;
+      
+    }
+    button {
+        padding: 10px 10px;
+        border: 1px solid #000000;
+        font-size:15px;
+        width: 150px;
+        height: 40px;
+        
+    }
+    .bottom-button {
+  margin-top: auto;
+    }
+ </style>
+</head>
+<body>
+    <h2>Tables Generator</h2>
+    <label for="number">Enter a Number:</label></br>
+    <input type="number" id="number" min="1" required></br>
+    <button onclick="generateTables()">Generate Tables</button>
+  
+    <h3>Tables</h3>
+    <div id="tables"></div>
+    
+
+  <script>
+    
+    function generateTables() {
+  var number = parseInt(document.getElementById("number").value);
+  var tablesContainer = document.getElementById("tables");
+
+  // Clear previous tables
+  tablesContainer.innerHTML = "";
+
+  // Using for loop
+  var tableForLoop = document.createElement("table");
+  for (var i = 1; i <= 10; i++) {
+    var row = tableForLoop.insertRow();
+    var cell1 = row.insertCell(0);
+    cell1.textContent = number + " x " + i + " = " + (number * i);
+  }
+  tablesContainer.appendChild(tableForLoop);
+  // Using while loop
+  var tableWhileLoop = document.createElement("table");
+  var j = 1;
+  while (j <= 10) {
+    var row = tableWhileLoop.insertRow();
+    var cell1 = row.insertCell(0);
+    cell1.textContent = number + " x " + j + " = " + (number * j);
+    j++;
+  }
+  tablesContainer.appendChild(tableWhileLoop);
+
+  // Using do-while loop
+  var tableDoWhileLoop = document.createElement("table");
+  var k = 1;
+  do {
+    var row = tableDoWhileLoop.insertRow();
+    var cell1 = row.insertCell(0);
+    cell1.textContent = number + " x " + k + " = " + (number * k);
+    k++;
+  } while (k <= 10);
+  tablesContainer.appendChild(tableDoWhileLoop);
+}
+
+
+
+
+  </script>    
+</body>
+</html>

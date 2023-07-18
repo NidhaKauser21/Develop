@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=“stylesheet” href=“crt.css”>
+    <title>Circle Rectangle triangle</title>
+</head>
+<body>
+    <center>
+        <h1>Calculating Shapes</h1><br><br>
+
+        <div id="Circle"><br>
+            <h2>Circle</h2>
+            <label for="circle-radius">Radius:</label>
+            <input type="number" id="circleRadius">
+            <button onclick="calculateCircle()">Calculate</button>
+            <div id="circleResults"></div>
+        </div>
+
+        <div id="Triangle"><br>
+            <h2>Triangle</h2>
+            <label for="triangle-base">Base:</label>
+            <input type="number" id="triangleBase">
+            <label for="triangle-height">Height:</label>
+            <input type="number" id="triangleHeight">
+            <button onclick="calculateTriangle()">Calculate</button>
+            <div id="triangleResults"></div>
+        </div>
+
+        <div id="Rectangle"><br>
+            <h2>Rectangle</h2>
+            <label for="rectangle-width">Width:</label>
+            <input type="number" id="rectangleWidth">
+            <label for="rectangle-height">Height:</label>
+            <input type="number" id="rectangleHeight">
+            <button onclick="calculateRectangle()">Calculate</button>
+            <div id="rectangleResults"></div>
+          </div>
+        
+         <script src="crt.js"></script>
+    </center>
+    
+</body>
+</html>

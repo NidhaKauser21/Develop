@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=“script.js”></script>
+    <link rel=“stylesheet” href=“style.css”>
+
+    <title>operations on Array</title>
+</head>
+<body>
+    <h1>Perform Operations on Array Elements</h1>
+​
+  <script>
+   const digits = [2356, 1212, 8967, 4563, 2345];
+
+// Addition (+)
+const sum = digits.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+console.log("Sum:", sum);
+
+// Subtraction (-)
+const difference = digits.reduce((accumulator, currentValue) => accumulator - currentValue);
+console.log("Difference:", difference);
+
+// Multiplication (x)
+const product = digits.reduce((accumulator, currentValue) => accumulator * currentValue, 1);
+console.log("Product:", product);
+
+  </script>
+    
+</body>
+</html>

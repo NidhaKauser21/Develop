@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel=“stylesheet” href=“style.css”>
+    <script src=“script.js”></script>
+    <title>Bulls and Cows Game</title>
+    <style>
+    
+      .container {
+      max-width: 100%;
+      margin-top: auto;
+      padding: 20px;
+      background-color: #f5f5f500;
+      border-radius: 5px;
+      text-align:center;
+      font-style: oblique;
+      font-size: larger;
+      background-size: cover;
+      font-weight: bolder;
+      background-position: center;
+      background-color: rgb(57, 16, 16);
+      background-image: url('Anguessj.jpg');
+      background-repeat: no-repeat;
+       
+    }
+    body {
+      width: 100%;
+      font-family: Arial, sans-serif;
+      color:black; /* Change the font color for the body text */
+      /* background-image: url('Anguessj.jpg'); */
+      /* object-fit: fill; */
+      /* background-position: center; */
+    }
+    img{
+      
+      width: 100%;
+      height: 100%; 
+      object-fit:fill;
+      background-position:center;  
+      background-repeat: no-repeat;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="number"] {
+      width: 50%;
+      padding: 8px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      
+    }
+    button {
+      display: inline-block; 
+      padding: 10px;
+      background-color: #871212;
+      color: white;
+      font-size: 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+    span::content{
+        content:"Congratulations! You guessed the number in ${guessCount} attempts.";
+        animation: animate infinite 5s;
+        padding-left: 5px;
+    }
+    @keyframes animate {
+      20% {
+        content: "Congratulations!";
+      }
+      100% {
+        content: "you guessed the number in";
+      }
+      100%{
+        content:"${guessCount} attempts.";
+      }
+    }
+   
+    </style>
+  </head>
+  <body>
+    
+    
+      <div class="container">
+        <p>ENTER YOUR GUESSING NUMBER:</p>
+      <input type="text" id="guessInput" maxlength="4" autocomplete="off"><br></br>
+      <button id="guessButton">Guess</button>
+      <p id="guessResult"></p>
+       <div class="image"></div>
+       <img id="background-image" src="anguessj.jpg">
+     
+      
+    </div>
+    </div>
+    
+    <script>
+        var guessCount=0
+      document.addEventListener('DOMContentLoaded', function() {
+        var secretNumber = generateSecretNumber();
+        var guessInput = document.getElementById('guessInput');
+        var guessButton = document.getElementById('guessButton');
+        var guessResult = document.getElementById('guessResult');
+        guessButton.addEventListener('click', handleGuess);
+        function generateSecretNumber() {
+          var digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+          var secretNumber = '';
+          for (var i = 0; i < 4; i++) {
+            var randomIndex = Math.floor(Math.random() * digits.length);
+            secretNumber += digits[randomIndex];
+            digits.splice(randomIndex, 1);
+          }
+          console.log(secretNumber);
+          return secretNumber;
+        }
+        function handleGuess() {
+          var guess = guessInput.value;
+          if (!isValidGuess(guess)) {
+            guessResult.textContent = 'Oops!! Your guess was wrong.Try again.';
+            return;
+          }
+          guessCount=guessCount+1
+        console.log(guessCount);
+          var bulls = getBulls(guess);
+          var cows = getCows(guess);
+          var header = document.createElement('h3')
+          header.innerHTML = `${bulls} bull(s) and ${cows} cow(s).`;
+        guessResult.appendChild(header)
+          if (bulls === 4) {
+            var para = document.createElement('p')
+para.innerHTML += ` Congratulations! You guessed the number in ${guessCount} attempts.`;
+guessResult.appendChild(para)
+ disableGame();
+          }
+        }
+        function isValidGuess(guess) {
+          return /^\d{4}$/.test(guess) && new Set(guess).size === 4;
+        }
+        function getBulls(guess) {
+          var bulls = 0;
+          for (var i = 0; i < 4; i++) {
+            if (guess[i] === secretNumber[i]) {
+              bulls++;
+            }
+          }
+          return bulls;
+        }
+        function getCows(guess) {
+          var cows = 0;
+          for (var i = 0; i < 4; i++) {
+            if (guess.includes(secretNumber[i])) {
+              cows++;
+            }
+
+          }
+          return cows - getBulls(guess);
+        }
+        function disableGame() {
+          guessButton.disabled = true;
+          guessInput.disabled = true;
+        }
+      });
+    </script>
+  </body>
+</html>

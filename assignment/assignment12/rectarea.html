@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=“script.js”></script>
+    <title>Area of two Rectangle</title>
+</head>
+<body>
+    <script>
+    class Rectangle {
+        constructor(length, breadth) {
+          this.length = length;
+          this.breadth = breadth;
+        }
+      
+        calculateArea() {
+          return this.length * this.breadth;
+        }
+      }
+      
+      //instances of Rectangle
+      const rectangle1 = new Rectangle(4, 5);
+      const rectangle2 = new Rectangle(5, 8);
+      
+      // Calculate and print the area of rectangle1
+      const area1 = rectangle1.calculateArea();
+      console.log(`Area of rectangle1: ${area1}`);
+      
+      // Calculate and print the area of rectangle2
+      const area2 = rectangle2.calculateArea();
+      console.log(`Area of rectangle2: ${area2}`);
+    </script>  
+      
+</body>
+</html>

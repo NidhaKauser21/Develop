@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=“script.js”></script>
+    <title>Employee Salary</title>
+</head>
+<body>
+    <h1>Employee Salary</h1>
+    <script>
+        class Employee {
+  constructor() {
+    this.salary = 0;
+    this.hoursOfWork = 0;
+  }
+
+  getInfo(salary, hoursOfWork) {
+    this.salary = salary;
+    this.hoursOfWork = hoursOfWork;
+  }
+
+  addSal() {
+    if (this.salary < 500) {
+      this.salary += 10;
+    }
+  }
+
+  addWork() {
+    if (this.hoursOfWork > 6) {
+      this.salary += 5;
+    }
+  }
+
+  printFinalSalary() {
+    console.log(`Final Salary: $${this.salary}`);
+  }
+}
+
+// Create an instance of Employee
+const employee = new Employee();
+
+// Get the employee information
+employee.getInfo(450, 8);
+
+// Perform salary adjustments
+employee.addSal();
+employee.addWork();
+
+// Print the final salary
+employee.printFinalSalary();
+
+    </script>
+    
+</body>
+</html>

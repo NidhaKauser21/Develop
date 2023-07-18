@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=“stylesheet” href=“style.css”>
+    <script src=“script.js”></script>
+    <title>Slide Show</title>
+    <style>
+    
+    img {
+      width: 700px;
+      height: 500px;
+      cursor: pointer;
+      border-style: double;
+      text-align: center
+      
+    }
+    #center{
+      text-align: center;
+      background-image: url(cloud.jpg);
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+ 
+    </style>
+
+</head>
+<body id="center">
+  
+    <h1>SLIDE SHOW</h1>
+    <p>click the image to move as a slideshow</p>
+  <img id="slideshowImage" src="BTS Asthetic.jpg" onclick="nextSlide()">
+  <script>
+    var currentSlide = 1;
+
+function nextSlide() {
+  currentSlide++;
+  
+  if (currentSlide === 2) {
+    document.getElementById("slideshowImage").src = "Cat Head On The Desk.jpg";
+  } else if (currentSlide === 3) {
+    document.getElementById("slideshowImage").src = "panda.jpg";
+  } else if (currentSlide === 4) {
+    document.getElementById("slideshowImage").src = "cat.jpg";
+  } else if (currentSlide === 5) {
+    document.getElementById("slideshowImage").src = "Iceland.jpg";
+  } else {
+    currentSlide = 1;
+    document.getElementById("slideshowImage").src = "progress.jpg";
+  }
+}
+
+
+  </script>   
+</body>
+</html>
