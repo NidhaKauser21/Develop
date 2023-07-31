@@ -1,0 +1,152 @@
+
+/* Reset default margin and padding for the entire document */
+* {
+    margin: 0;
+    padding: 0;
+   
+  }
+  
+  /* Style the navigation bar */
+  nav {
+    background-color: grey;
+    color: rgb(128, 9, 9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    /* font-family: 'Cairo Play', sans-serif;
+    font-family: 'Merienda', cursive;
+    */
+  }
+
+/* Style the search bar */
+
+.search-form {
+  display: flex;
+  align-items:center;
+  
+}
+
+.search-form input[type="text"] {
+  width:100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+
+.search-form button {
+  padding: 5px 10px;
+  background-color: rgb(228, 20, 20);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+  
+  /* Style the logo on the left side of the navigation bar */
+  .logo {
+    font-size: 50px;
+    font-weight: bold;
+  }
+  
+  /* Style the navigation links on the right side of the navigation bar */
+  .nav-links {
+    list-style: none;
+    display: flex;
+    font-size: 20px;
+    font-weight: bolder;
+    
+  }
+  .btn button{
+    display: flex;
+    margin-right: 5px;
+  }
+  
+  .nav-links li {
+    margin:  10px;
+  }
+  
+  .nav-links li a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  /* Change the color of links on hover */
+  .nav-links li a:hover {
+    color: #c80909;
+  }
+  .nav-cart-icons{
+    color: #fdfbfb;
+  }
+  .cart-icon {
+    width:30px; /* Adjust the width and height as needed */
+    height: 20px;
+    vertical-align: middle; /* To align the icon vertically with the text */
+  }
+  
+/* Style the dropdown menu */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #322f2f;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Style the login and sign-in buttons */
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Change the color of links on hover */
+.nav-links li a:hover {
+  color: #c80909;
+}
+.btn{
+  color: #fff !important;
+  background-color: #322f2f;
+  
+
+}
+.btn:hover{
+  /* color:#c80909; */
+  background-color: #c80909 !important;
+}
+
+#container{
+
+  display: flex;
+  grid-template-columns: repeat(auto-fill,200px);
+  gap:24px;
+  padding:24px;
+  display: flex;
+  justify-content:space-around;
+  flex-wrap:wrap;
+}

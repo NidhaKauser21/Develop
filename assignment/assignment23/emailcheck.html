@@ -1,0 +1,63 @@
+<!-- Write a program to match email address patterns?
+The personal information part contains the following ASCII characters.
+Uppercase (A-Z) and lowercase (a-z) English letters.
+Digits (0-9).
+Characters ! # $ % & ' * + - / = ? ^ _ ` { | } ~
+Character (Period or comma) provided that it is not the first or last character and it will
+not come one after the other. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Mail Validation using regex</title>
+    <style>
+        body{
+            background-color:lightslategray;
+        }
+        button{
+            background-color:seagreen;
+            font-weight: bolder;
+            font-style: normal;
+            padding: 10px 10px;
+        }
+        #email{
+            padding: 10px 10px;
+            width:15%;
+            height:10%;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <h1>E-MAIL VALIDATION </h1>
+    <lable for="email">Enter Your E-Mail Id To Validate</lable><br><br>
+    <input type="text" id="email" placeholder="Type Email"><br><br>
+    <button onclick="Validate()">Validate!</button>
+    <h1 id="output"></h1>
+
+<script>
+       
+       function Validate() {
+         var input = document.getElementById('email').value;
+         const regexp = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/; ;
+        
+          if((regexp.exec(input))){
+  
+              document.getElementById('output').innerText = 'Valid e-mail Id.';
+             }
+          else{
+  
+              document.getElementById('output').innerText = 'Invalid e-mail Id.';
+             }
+            }
+
+
+
+</script>
+
+    
+</center>
+</body>
+</html>
