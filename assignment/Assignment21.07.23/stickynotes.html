@@ -1,0 +1,98 @@
+<!-- Create a sticky note-type web application.
+- Ability to add a new note
+- Ability to edit notes
+- Ability to delete notes
+- Ability to organize the notes (Should be draggable from one place to another)
+- Must be intuitive and aesthetically pleasing -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="stickynotes.css">
+    <title>StickyNotes</title>
+</head>
+<body>
+    <center>
+        <div id="container">
+            
+            <button class="btn-add" onclick="notes()">new note</button>    
+        </div>
+
+        <script>
+            const notes=() =>{
+              document.getElementById('container').innerHTML += `<textarea class="sticky"></textarea>
+              <div class="action"> 
+                                                                <button class="acbtn" id="save" onclick="saveData()">Save</button>
+                                                                <button class="acbtn" id="edit" onclick="editData()">Edit</button>
+                                                                <button class="acbtn" id="delete" onclick="deleteData()">Delete</button>
+                                                            </div>
+
+                                                        </div>
+
+                                                        `
+        
+            }
+
+            recover = localStorage.getItem('notesData')
+
+        if (recover != null) {
+
+            document.getElementById("add").innerHTML = `
+                                                        <div id="card" class="card" draggable="true">
+                                                            <div class="card-body">
+                                                                <textarea class="input" id="data">${localStorage.getItem('notesData')}</textarea>
+                                                            </div>
+                                                            <div class="action"> 
+                                                                <button class="acbtn" id="save" onclick="saveData()">Save</button>
+                                                                <button class="acbtn" id="edit" onclick="editData()">Edit</button>
+                                                                <button class="acbtn" id="delete" onclick="deleteData()">Delete</button>
+                                                            </div>
+
+                                                        </div>
+
+                                                        `
+                                                    }
+                                                    const saveData = () => {
+            let ip = document.getElementById("data").value;
+            console.log(ip);
+
+            localStorage.setItem('notesData', ip)
+            save = localStorage.getItem('notesData', ip)
+            console.log(save)
+            // document.getElementById("data").value;
+        }
+
+        const editData = () => {
+            edit = localStorage.getItem('notesData')
+            console.log(edit)
+            document.getElementById("data").value = edit
+        }
+        
+        const deleteData = () => {
+            localStorage.removeItem('notesData')
+            cardElement = document.getElementById("card");
+            console.log(cardElement)
+            if (cardElement) {
+                cardElement.remove();
+            }
+        }
+
+
+
+          
+
+
+           
+
+        </script>
+
+
+
+
+    </center>
+    
+</body>
+</html>

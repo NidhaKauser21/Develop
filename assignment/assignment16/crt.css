@@ -1,0 +1,21 @@
+
+  body{
+    background-color: lightskyblue;
+    font-style: italic;
+    font-size: large;
+    font-weight: bold;
+    
+  }
+  
+  input {
+    margin-bottom: 10px;
+  }
+  
+  button {
+    margin-bottom: 20px;
+  }
+  
+  .results {
+    margin-top: 20px;
+  }
+  

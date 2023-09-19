@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=“script.js”></script>
+    <title>Information of the Employee</title>
+</head>
+<body>
+    <script>
+        class Employee {
+  constructor(name, yearOfJoining, salary, address) {
+    this.name = name;
+    this.yearOfJoining = yearOfJoining;
+    this.salary = salary;
+    this.address = address;
+  }
+
+  printEmployeeInfo() {
+    console.log(`${this.name} ${this.yearOfJoining} ${this.address}`);
+  }
+}
+
+// Create instances of Employee
+const employee1 = new Employee("Robert", 1994, 5000, "64C- WallsStreet");
+const employee2 = new Employee("Sam", 2000, 6000, "68D- WallsStreet");
+const employee3 = new Employee("John", 1999, 5500, "26B- WallsStreet");
+
+// Print the information of employees
+console.log("Name Year of joining Address");
+employee1.printEmployeeInfo();
+employee2.printEmployeeInfo();
+employee3.printEmployeeInfo();
+
+    </script>
+
+    
+</body>
+</html>

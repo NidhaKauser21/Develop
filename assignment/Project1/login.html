@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login form</title>
+    <style>
+        body
+{
+    margin: 0;
+    padding: 0;
+    background-color:#e0e3e4ba;
+    font-family: 'Arial';
+}
+.login{
+        max-width: 400px;
+        width: 382px;
+        overflow: hidden;
+        margin: auto;
+        margin: 20 0 0 450px;
+        padding: 80px;
+        background: rgb(114, 113, 113);
+        border-radius: 15px ;
+
+}
+h2{
+    text-align: center;
+    color: #0c0c0c;
+    padding: 20px;
+}
+label{
+    color: #edf1f0;
+    font-size: 17px;
+}
+#Uname{
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 8px;
+
+}
+#email{
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 8px;
+
+}
+#Pass{
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 8px;
+
+}
+#log{
+    width: 300px;
+    height: 40px;
+    border: none;
+    border-radius: 17px;
+    padding-left: 7px;
+    color: rgb(235, 231, 231);
+    background-color: #910b0b;
+
+
+}
+span{
+    color: white;
+    font-size: 17px;
+}
+a{
+    float: none;
+    background-color: grey;
+}
+.btn
+{
+    color:#f7f5f5;
+    background-color: rgb(116, 116, 226);
+    
+}
+.signup_btn{
+    margin-bottom: 20px;
+}
+
+
+
+</style>
+</head>
+
+<body>
+        <div id="container"></div>
+
+            <div id="loginform"></div>
+                 <h2>Login Page</h2><br>
+                  <div class="login">
+                  <form id="login" method="get">
+
+        <label><b>e-mail:</b></label><br>
+        <input type="text" id="email" placeholder="Type Email"><br><br>
+
+        <label><b>Password:</label>
+        <input type="Password" name="Pass" id="Pass" placeholder="Password"> <br><br>
+        
+        <div id="form">
+        <!-- <input type="button" name="log" id="log" value="Log In"><br><br> -->
+         <!-- <input type="button" name="log" value="Log In" button onclick="button()" id="log"></button><br><br> -->
+         <button type="login_button" id="log" onclick="button()">Login</button> <br><br>
+        </div>
+
+        
+        <div>
+            <a style="text-decoration: none; margin-left: 10px;" href="./forget.html" id="forget_btn">Forget Password?</a><br><br>
+            <span style="margin-left: 50px;">New to ShaadhiVandi?<a href="./register.html" id="signup_btn" style="color: rgb(12, 12, 12);">Create an Account</a></span>
+        </div>   
+    </form>
+        
+ <script>
+
+function button() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('Pass').value;
+
+  const firebaseURL_GET =  `https://shaadhivandi-default-rtdb.firebaseio.com/login.json`;
+
+  fetch(firebaseURL_GET)
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error('Failed to read data');
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+
+      const object = Object.keys(data);
+      console.log(object);
+
+      let loginSuccessful = false;
+
+      for (let index = 0; index < object.length; index++) {
+        const user = data[object[index]];
+
+        if (user.email === email) {
+          console.log('Login Successful');
+          alert('Login Successful');
+          loginSuccessful = true;
+          break;
+        } else {
+          if (object.length - 1 === index) {
+            console.log('Invalid Username or Password!');
+            alert('Invalid Username or Password!');
+          }
+        }
+      }
+      read();
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    
+
+  event.preventDefault()
+}
+
+
+
+
+  
+    </script>
+  </body>
+ </html>      
+ 

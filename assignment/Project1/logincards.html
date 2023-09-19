@@ -1,0 +1,291 @@
+function button() {
+    // Get 
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('Pass').value;
+
+   // Create newData object
+     const newData = {
+    email: email,
+    password: password
+  };
+
+
+ // CRUD Create -Post request 
+
+//      function post() {
+//       let firebaseURL = `https://shaadhivandi-default-rtdb.firebaseio.com/login.json`;
+//       fetch(firebaseURL, {
+//       method: 'POST',
+//       body: JSON.stringify(newData)
+//     })
+//      .then(response => {
+//      if (response.ok) {
+//         console.log('Data created successfully!');
+//      } else {
+//         console.log('Failed to create data.');
+//     }
+//   })
+//    .catch(error => {
+//    console.log('Error:', error);
+//    });
+//  }    
+//  post()
+//  }
+
+
+// CRUD Retrive - GET request
+
+//       function read() {
+//         const promise = new Promise((resolve, reject) => {
+//         const firebaseURL_GET = `https://shaadhivandi-default-rtdb.firebaseio.com/login.json`;
+//         fetch(firebaseURL_GET, {
+//          method: 'GET'
+//       })
+//       .then(response => {
+//        if (!response.ok) {
+//           throw new Error('Failed to read data');
+//        }
+//         return response.json();
+//       })
+//      .then(data => {
+//       resolve(data);
+//      })
+//      .catch(error => {
+//       reject(error);
+//      });
+//    });
+//     promise
+//      .then(data => {
+//       console.log('Data Available:', data);
+//     })
+//   }
+//  read();
+
+
+// CRUD Update- PUT request
+
+// function update() {
+//   let firebaseURL = `https://shaadhivandi-default-rtdb.firebaseio.com/loginpg.json`;
+
+//   fetch(firebaseURL, {
+//     method: 'PUT',
+//     body: JSON.stringify(newData),
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//   .then(response => {
+//     if (response.ok) {
+//       console.log('Data updated successfully!');
+//     } else {
+//       console.error('Failed to update data.');
+//     }
+//   })
+//   .catch(error => {
+//     console.error('Error occurred while updating data:', error);
+//   });
+// }
+
+// update();
+
+
+//      // CRUD Del - Delete request
+    
+function deleteData() {
+let firebaseURL = `https://shaadhivandi-default-rtdb.firebaseio.com/login.json`;
+
+fetch(firebaseURL, {
+method: 'DELETE',
+})
+.then(response => {
+if (response.ok) {
+ console.log('Data deleted successfully!');
+ } else {
+ console.error('Failed to delete data.');
+}
+})
+.catch(error => {
+console.error('Error occurred while deleting data:', error);
+});
+}
+
+deleteData();
+
+}
+
+
+
+
+// -----------------cards------------------------------
+
+
+<div id= "saree"  class="card" style="width: 18rem;">
+        <img class="card-img-top" src="saree.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Saree</h5>
+          <h6 class="card-text">₹3400.</h6>
+          <p class="card-text">Women's kanjipuram Silk Saree.</p>
+          <a href="#" class="btn btn-primary">buy product</a>
+          <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+      </div>
+
+      <div id= "Suit"  class="card" style="width: 18rem;">
+        <img class="card-img-top" src="groom suite.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Suit</h5>
+          <h6 class="card-text">₹6000.</h6>
+          <p class="card-text">Men Beige Slim fit Breasted Suit .</p>
+          <a href="#" class="btn btn-primary">buy product</a>
+          <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+      </div> 
+
+      <div id= "Saree"  class="card" style="width: 18rem;">
+        <img class="card-img-top" src="saree.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Pattu Saree</h5>
+          <h6 class="card-text">₹9000.</h6>
+          <p class="card-text">Women's pure Silk Saree .</p>
+          <a href="#" class="btn btn-primary">buy product</a>
+          <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+      </div> 
+
+      <div id= "Shervani"  class="card" style="width: 18rem;">
+        <img class="card-img-top" src="shervani.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Shervani</h5>
+          <h6 class="card-text">₹6000.</h6>
+          <p class="card-text">Men  Slim fit Shervani .</p>
+          <a href="#" class="btn btn-primary">buy product</a>
+          <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+      </div> 
+
+
+      <div id= "lehanga"  class="card" style="width: 18rem;">
+        <img class="card-img-top" src="lehanga.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Lehanga</h5>
+          <h6 class="card-text">₹20000.</h6>
+          <p class="card-text">Women's wedding red lehanga .</p>
+          <a href="#" class="btn btn-primary">buy product</a>
+          <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+      </div> 
+
+
+      // function button() {
+        //     // Get 
+        //     const email = document.getElementById('email').value;
+        //     const password = document.getElementById('Pass').value;
+        
+        //    // Create newData object
+        //      const newData = {
+        //     email: email,
+        //     password: password
+        //   };
+        
+        
+        //  // CRUD Create -Post request 
+        
+        //      function post() {
+        //       let firebaseURL = `https://shaadhivandi-default-rtdb.firebaseio.com/login.json`;
+        //       fetch(firebaseURL, {
+        //       method: 'POST',
+        //       body: JSON.stringify(newData)
+        //     })
+        //      .then(response => {
+        //      if (response.ok) {
+        //         console.log('Data created successfully!');
+        //      } else {
+        //         console.log('Failed to create data.');
+        //     }
+        //   })
+        //    .catch(error => {
+        //    console.log('Error:', error);
+        //    });
+        //  }    
+        //  post()
+        //  }
+        
+        
+        
+        // CRUD Retrive - GET request
+        
+        //       function read() {
+        //         const promise = new Promise((resolve, reject) => {
+        //         const firebaseURL_GET = `https://shaadhivandi-default-rtdb.firebaseio.com/login.json`;
+        //         fetch(firebaseURL_GET, {
+        //          method: 'GET'
+        //       })
+        //       .then(response => {
+        //        if (!response.ok) {
+        //           throw new Error('Failed to read data');
+        //        }
+        //         return response.json();
+        //       })
+        //      .then(data => {
+        //       resolve(data);
+        //      })
+        //      .catch(error => {
+        //       reject(error);
+        //      });
+        //    });
+        //     promise
+        //      .then(data => {
+        //       console.log('Data Available:', data);
+        //     })
+        //   }
+        //  read();
+        
+        
+        // CRUD Update- PUT request
+        
+        // function update() {
+        //   let firebaseURL = `https://shaadhivandi-default-rtdb.firebaseio.com/loginpg.json`;
+        
+        //   fetch(firebaseURL, {
+        //     method: 'PUT',
+        //     body: JSON.stringify(newData),
+        //     headers: {
+        //       'Content-Type': 'application/json'
+        //     }
+        //   })
+        //   .then(response => {
+        //     if (response.ok) {
+        //       console.log('Data updated successfully!');
+        //     } else {
+        //       console.error('Failed to update data.');
+        //     }
+        //   })
+        //   .catch(error => {
+        //     console.error('Error occurred while updating data:', error);
+        //   });
+        // }
+        
+        // update();
+        
+        
+        //      // CRUD Del - Delete request
+            
+        // function deleteData() {
+        // let firebaseURL = `https://shaadhivandi-default-rtdb.firebaseio.com/login.json`;
+        
+        // fetch(firebaseURL, {
+        // method: 'DELETE',
+        // })
+        // .then(response => {
+        // if (response.ok) {
+        //  console.log('Data deleted successfully!');
+        //  } else {
+        //  console.error('Failed to delete data.');
+        // }
+        // })
+        // .catch(error => {
+        // console.error('Error occurred while deleting data:', error);
+        // });
+        // }
+        
+        // deleteData();

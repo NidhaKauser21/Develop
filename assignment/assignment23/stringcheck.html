@@ -1,0 +1,48 @@
+<!-- JavaScript program to test if the first character of a string is uppercase or not -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+  
+  <title>To check the first character of the string is Uppercase or NOt</title>
+ 
+</head>
+<body>
+    <center>
+  <h1>Check string Uppercase or Not</h1><br>
+  <div>
+  <!-- <input type="text" id="inputText" placeholder="Enter a string"><br><br> -->
+  <label for="input">Enter a String:</label>
+  <input type="text" id="input">
+  <button onclick="checkFirstCharacter()">check</button><br>
+  
+    </div>
+    <p id="output"></p>
+    <script>
+        
+
+        function checkFirstCharacter() {
+         var input = document.getElementById('input').value;
+         const regexp = /^[A-Z]/;
+        
+          if((regexp.test(input))){
+  
+              document.getElementById('output').innerText = 'Strings first character is Uppercase.';
+             }
+          else{
+  
+              document.getElementById('output').innerText = 'Strings first character is not Uppercase.';
+             }
+            }
+
+        
+
+
+
+
+    </script>
+</center>
+    
+</body>
+</html>

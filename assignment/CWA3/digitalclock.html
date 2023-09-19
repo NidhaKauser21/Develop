@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <!-- <link rel="stylesheet" href=""> -->
+    <!-- <script src=""></script> -->
+
+    <style>
+
+        #timenow {
+            border-radius: 2px;
+            border: 1px solid black;
+            width: fit-content;
+            color: #00ffff;
+            background-color: black;
+            font-size: 100px;
+            margin-top: 50px;
+            padding-left: 30px;
+            padding-right: 30px;
+            align-content: center;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            background-color: black;
+            padding: 10px;
+            /* column-gap: 50px;
+            row-gap: 50px; */
+            margin-top: 10px;
+
+            }
+        .grid-item {
+            background-color: black;
+            /* padding: 20px; */
+            font-size: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            color: greenyellow;
+        }
+
+        p {
+            color: white;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <center>
+        <div id="timenow"></div>
+
+
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h1>Indianapolis</h1>
+                    <p id="Indianapolis_date"></p>
+                    <p id="Indianapolis_time"></p>
+                </div>
+
+                <div class="grid-item">
+                    <h1>Italy</h1>
+                    <p id="Italy_date"></p>
+                    <p id="Italy_time"></p>
+                </div>
+                <div class="grid-item">
+                    <h1>Arabic</h1>
+                    <p id="Arabic_date"></p>
+                    <p id="Arabic_time"></p>
+                </div>  
+                <div class="grid-item">
+                    <h1>German</h1>
+                    <p id="German_date"></p>
+                    <p id="German_time"></p>
+                </div>
+                <div class="grid-item">
+                    <h1>Russia..</h1>
+                    <p id="Russia_date"></p>
+                    <p id="Russia_time"></p>
+                </div>
+                <div class="grid-item">
+                    <h1>Pakistan..</h1>
+                    <p id="Pakistan_date"></p>
+                    <p id="Pakistan_time"></p>
+                </div>  
+                <div class="grid-item">
+                    <h1>Srilanka..</h1>
+                    <p id="Srilanka_date"></p>
+                    <p id="Srilanka_time"></p>
+                </div>
+                <div class="grid-item">
+                    <h1>Ukraine..</h1>
+                    <p id="Ukraine_date"></p>
+                    <p id="Ukraine_time"></p>
+                </div>
+            </div>
+
+
+    <script>
+
+        
+        setInterval(Time, 1000)
+
+        function Time() {
+            var time = new Date();
+            document.getElementById("timenow").innerHTML = time.toLocaleTimeString();
+
+            document.getElementById("Indianapolis_date").innerHTML = time.toLocaleDateString('en-US');
+            document.getElementById("Indianapolis_time").innerHTML = time.toLocaleTimeString('en-US');
+
+            document.getElementById("Italy_date").innerHTML = time.toLocaleDateString('it-IT');
+            document.getElementById("Italy_time").innerHTML = time.toLocaleTimeString('it-IT');
+
+            document.getElementById("Arabic_date").innerHTML = time.toLocaleDateString('ar-EG');
+            document.getElementById("Arabic_time").innerHTML = time.toLocaleTimeString('ar-EG');
+
+            document.getElementById("German_date").innerHTML = time.toLocaleDateString('de-AT');
+            document.getElementById("German_time").innerHTML = time.toLocaleTimeString('de-AT');
+
+
+            // document.getElementById("Russia_date").innerHTML = time.toLocaleDateString('en-US');
+            // document.getElementById("Russia_time").innerHTML = time.toLocaleTimeString('en-US');
+
+            // document.getElementById("Pakistan_date").innerHTML = time.toLocaleDateString('en-US');
+            // document.getElementById("Pakistan_time").innerHTML = time.toLocaleTimeString('en-US');
+
+
+            // document.getElementById("Srilanka_date").innerHTML = time.toLocaleDateString('en-US');
+            // document.getElementById("Srilanka_time").innerHTML = time.toLocaleTimeString('en-US');
+
+            // document.getElementById("Ukraine_date").innerHTML = time.toLocaleDateString('en-US');
+            // document.getElementById("Ukraine_time").innerHTML = time.toLocaleTimeString('en-US');
+
+
+
+        }
+
+    </script>
+    </center>
+
+
+
+</body>
+</html>
+
+
+

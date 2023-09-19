@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register for new user</title>
+    <style>
+.registration-form-container {
+  max-width: 300px;
+  margin: 30px auto;
+  padding: 80px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #9c9a9a;
+  align-items: center;
+  font-weight: bolder;
+  font-size:larger;
+}
+
+/* Style the registration form elements */
+.registration-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.registration-form input[type="text"],
+.registration-form input[type="tel"],
+.registration-form input[type="email"],
+.registration-form input[type="password"] {
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.registration-form button {
+  padding: 10px 70px;
+  background-color: #a80d0d;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size:larger;
+  
+}
+
+
+
+    </style>
+</head>
+<body>
+    
+    <div class="registration-form-container">
+        <h2>Create Account</h2>
+        <form class="registration-form">
+          <label for="name"> Your Name:</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+    
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+    
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+    
+          
+            <button type="button" id="btn" onclick="button()">Register</button>  
+       
+
+        </form>
+      </div>
+
+
+      <script>
+
+        
+
+function button() {
+  const Name = document.getElementById('name').value;
+  const PhoneNumber = document.getElementById('phone').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  function read() {
+    const firebaseURL_GET = `https://shaadhivandi-default-rtdb.firebaseio.com/login.json`;
+
+    fetch(firebaseURL_GET, {
+      method: 'GET'
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to read data');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+
+        if (data) {
+          let object = Object.keys(data);
+          console.log(object);
+
+          let userExists = false;
+
+          for (let index = 0; index < object.length; index++) {
+            const user = data[object[index]];
+
+            if (user.email === email) {
+              console.log('User Already Exists, Please Login!');
+              alert('User Already Exists, Please Login!');
+              userExists = true;
+              break;
+            }
+          }
+
+          if (!userExists) {
+            const newData = {
+              Your_Name: Name,
+              Phone_Number: PhoneNumber,
+              email: email,
+              password: password
+            };
+
+            function post() {
+              let firebaseURL = `https://shaadhivandi-default-rtdb.firebaseio.com/login.json`;
+              fetch(firebaseURL, {
+                method: 'POST',
+                body: JSON.stringify(newData)
+              });
+              alert('Account Created Successfully!');
+            }
+
+            post();
+          }
+        } else {
+          const newData = {
+            Your_Name: Name,
+            Phone_Number: PhoneNumber,
+            email: email,
+            password: password
+          };
+
+          function post() {
+            let firebaseURL = `https://shaadhivandi-default-rtdb.firebaseio.com/login.json`;
+            fetch(firebaseURL, {
+              method: 'POST',
+              body: JSON.stringify(newData)
+            });
+            alert('Account Created Successfully!');
+          }
+
+          post();
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  read();
+
+  event.preventDefault();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           
+
+
+
+
+
+
+
+
+
+
+      </script>
+    
+    
+</body>
+</html>
