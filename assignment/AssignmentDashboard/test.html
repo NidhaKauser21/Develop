@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css"> -->
+  <link rel="stylesheet" href="test.css">
+  <title>Dashboard</title>
+</head>
+<body style="background-color: rgba(237, 231, 231, 0.637);">
+  <header>
+    <div id="nav"> 
+      <nav class="navbar navbar-light" style="background-color: rgb(124, 240, 74); font-size: larger;  font-weight: bolder;">
+        <div class="container-fluid">
+          <a class="navbar-brand">NavaDhiti Dashboard</a>
+          <a href="./about.html" class="btn" >what is this dashboard for?</a>
+
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container mt-5 ">
+    <div class="row">
+
+      <div class="col custom-column ">
+        <div class="custom-header">Backlog</div>
+          <div id="column1-content">Column 1 Content</div>
+            <div class="custom-footer"> 
+              <div class="left-button" type="button" onclick="addCard(1)">+ Add item</div>
+            </div> 
+      </div>
+
+      <div class="col custom-column ">
+        <div class="custom-header">Ready</div>
+          <div id="column2-content">Column 2 Content</div>
+            <div class="custom-footer"> 
+              <div class="left-button" type="button" onclick="addCard(2)">+ Add item</div>
+            </div> 
+      </div>
+
+      <div class="col custom-column ">
+        <div class="custom-header">In-Process</div>
+          <div id="column3-content">Column 3 Content</div>
+            <div class="custom-footer"> 
+              <div class="left-button" type="button" onclick="addCard(3)">+ Add item</div>
+            </div> 
+      </div>
+
+      <div class="col custom-column ">
+        <div class="custom-header">In-Review</div>
+          <div id="column4-content">Column 4 Content</div>
+            <div class="custom-footer"> 
+              <div class="left-button" type="button" onclick="addCard(4)">+ Add item</div>
+            </div> 
+      </div>
+    </div>
+  </div>
+           
+  <footer class="bg-light text-center text-lg-start">
+    <div class="text-center p-0" style="background-color: rgba(10, 9, 9, 0.2);">
+      © 2023 Copyright:
+      <a class="text-dark" href="https://mdbootstrap.com/">navadhiti.com</a>
+    </div>
+  </footer>
+    
+ 
+
+    <script>
+
+      window.onload = () => {
+        fetchFirebaseData();
+      };
+
+const addCard = () => {
+    const cardHTML = `
+        <div class="card">
+            <div class="card-body">
+                <textarea id="text" class="conent"></textarea>
+                <button type="button" class="btn btn-primary" onclick="Save()">save</button>
+                
+                
+            </div>
+        </div>
+    `;
+    
+ const column1Content = document.getElementById("column1-content");
+      column1Content.innerHTML += cardHTML;
+      }
+ 
+    function fetchFirebaseData() {
+     const fetchUrl = `https://dashboard-fe98f-default-rtdb.firebaseio.com/card.json`;
+
+    fetch(fetchUrl)
+    .then(response => response.json())
+    .then(data => {
+        const column1Content = document.getElementById("column1-content");
+        column1Content.innerHTML = '';      
+        const keys = Object.keys(data);
+        console.log(keys);
+        keys.forEach(key => {
+        const cardData = data[key];
+        console.log(cardData);
+        const cardHTML = `
+          <div class="card" data-key="${key}">
+            <div class="card-body">
+              <p class="card-text">${cardData.content}</p>
+              <button type="button" class="btn btn-primary" onclick="updateCard('${key}')">Update</button>
+              <button type="button" class="btn btn-primary" onclick="deleteCard(this)">Delete</button>
+            </div>
+          </div>
+        `;
+                column1Content.innerHTML += cardHTML;
+            });
+        
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+}
+
+      function Save() {
+      let text = document.getElementById(`text`).value;
+      console.log(text);
+
+      const jsonData = {
+        content: text
+      };
+      
+       const url = `https://dashboard-fe98f-default-rtdb.firebaseio.com/card.json`;
+      
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(jsonData)
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log('Data added successful');
+          } else {
+            console.error('Failed to save data:', response.status);
+          }
+        })
+        .catch((error) => {
+          console.error('Error saving data:', error);
+        });
+    }
+
+    function Update(key) {
+    const card = document.querySelector(`[data-key="${key}"]`);
+    const newContent = prompt("Enter new content:", card.querySelector(".card-text").textContent);
+    
+    if (newContent !== null) {
+        const url = `https://dashboard-fe98f-default-rtdb.firebaseio.com/card/${key}.json`;
+        const jsonData = {
+            content: newContent
+        };
+        
+        fetch(url, {
+            method: 'PATCH',
+            body: JSON.stringify(jsonData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            fetchFirebaseData();
+        })
+        .catch(error => {
+            console.error('Error updating data:', error);
+        });
+    }
+}
+
+    
+    function Delete(button) {
+    const card = button.closest(".card");
+    const cardKey = card.getAttribute("data-key");
+    console.log("Deleting card with key:", cardKey);
+
+    if (!cardKey) {
+        console.error("Missing data-key attribute on card element.");
+        return;
+    }
+    
+    const url = `https://dashboard-fe98f-default-rtdb.firebaseio.com/card/${cardKey}.json`;
+    console.log("Delete URL:", url);
+    fetch(url, {
+        method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Delete response:", data);
+        fetchFirebaseData(); // Refresh content after delete
+    })
+    .catch(error => {
+        console.error('Error deleting data:', error);
+    });
+}
+
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>

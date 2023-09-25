@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="js" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
+    <link rel="stylesheet" href="dasboard.css">
+    <!-- <link rel="js" href="dashboard.js"> -->
+    <title>DASBOARD</title>
+</head>
+<body style="background-color: rgba(6, 6, 6, 0.637);">
+
+   <div id="nav"> 
+    <nav class="navbar navbar-light" style="background-color: rgb(124, 240, 74); font-size: larger; font-weight: bolder;">
+        <div class="container-fluid">
+          <a class="navbar-brand">NavaDhiti Dashboard</a>  
+        </div>
+      </nav>
+    </div>
+
+    <div class="row">
+        <div class="column">   
+          <div class="card"> 
+            <button class="left-button" onclick="addCard()">+ Add item</button>  
+            <h3 id="title"> Backlog <img src="icon.png" class="icon" alt="Icon"></h3></h3>           
+          </div>
+        </div>
+      
+        <div class="column" >
+          <div class="card">
+            <button class="left-button" onclick="addCard(this)">+ Add item</button>
+            <h3 id="title"> Ready <img src="icon.png" class="icon" alt="Icon"></h3>           
+          </div>
+        </div>
+        
+        <div class="column">
+          <div class="card">
+            <button class="left-button" onclick="addCard(this)">+ Add item</button>
+            <h3 id="title" > In progress <img src="icon.png" class="icon" alt="Icon"> </h3>
+          </div>
+        </div>
+        
+        <div class="column" >
+          <div class="card">
+            <button class="left-button" onclick="addCard(this)">+ Add item</button> 
+            <h3 id="title"> In review <img src="icon.png" class="icon" alt="Icon"> </h3>
+          </div>
+        </div>
+      
+        
+        <div id="footer">
+          <footer class="bg-light text-center text-lg-start">
+            <div class="text-center p-0" style="background-color: rgba(10, 9, 9, 0.2);">
+              © 2023 Copyright:
+              <a class="text-dark" href="https://mdbootstrap.com/">navadhiti.com</a>
+            </div>
+          </footer>
+        </div>
+      
+
+         
+ <script>
+
+var cardCounters = {
+            backlog: 0,
+            ready: 0,
+            progress: 0,
+            review: 0
+        };
+   
+   function addCard(button) {
+            var cardContainer = button.parentElement;
+            var columnId = cardContainer.parentElement.id;
+            cardCounters[columnId]++;
+            var cardId = `${columnId}-card-${cardCounters[columnId]}`;
+            
+            var newCard = document.createElement("div");
+            newCard.classList.add("ui", "card");
+            newCard.id = cardId;
+            
+            var content = document.createElement("div");
+            content.classList.add("content");
+
+            var header = document.createElement("div");
+            header.classList.add("header");
+            header.textContent = "New Card";
+
+            var meta = document.createElement("div");
+            meta.classList.add("meta");
+
+            var paragraph = document.createElement("p");
+
+            content.appendChild(header);
+            content.appendChild(meta);
+            content.appendChild(paragraph);
+
+            newCard.appendChild(content);
+
+            cardContainer.appendChild(newCard);
+        }
+
+
+
+ </script>
+
+       
+
+
+
+    
+</body>
+</html>

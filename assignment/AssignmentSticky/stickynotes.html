@@ -1,0 +1,240 @@
+<!-- Create a sticky note-type web application.
+- Ability to add a new note
+- Ability to edit notes
+- Ability to delete notes
+- Ability to organize the notes (Should be draggable from one place to another)
+ - Must be intuitive and aesthetically pleasing -- -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stickynotes.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+  <!-- <script src="./stickynotes.js"></script> -->
+
+
+
+  <title>StickyNotes</title>
+</head>
+
+<body id="body">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <img src="icon.png" alt="" width="30" height="24">
+      <a class="navbar-brand" href="#">Sticky Notes</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <div id="profile">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="#">Profile</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <!-- <a class="nav-link " aria-current="page" href="#">About</a> -->
+              <a href="./About.html" class="btn" type="button" onclick="AboutBtn()">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+
+
+
+
+  <!-- sticky container -->
+
+  <div id="container">
+    <button class="btn-add" onclick="createNewNote()">+New Note</button>
+    <div id="up">
+
+    </div>
+  </div>
+
+  <div id="test">
+  </div>
+
+
+
+  <!-- footer  -->
+  <div id="footer">
+    <footer class="bg-light text-center text-lg-start">
+      <div class="text-center p-0" style="background-color: rgba(10, 9, 9, 0.2);">
+        © 2023 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">Stickynotes.com</a>
+      </div>
+    </footer>
+  </div>
+
+
+  <script>
+
+
+    const notesContainer = document.getElementById("test");
+    const generateUniqueID = () => {
+      return Date.now();
+    };
+
+    const createNewNoteElement = (noteID, noteText) => {
+      return                                  `
+                                                 <div id="note-container-${noteID}" class="sticky-container">
+                                                    <textarea id="note-${noteID}" class="sticky">${noteText}</textarea>
+                                                         <div class="action"> 
+                                                           <button class="acbtn1" onclick="saveData(${noteID})">Save</button>
+                                                           <button class="acbtn2"  onclick="editData(${noteID})">Edit</button>
+                                                           <button class="acbtn3"  onclick="deleteData(${noteID})">Delete</button>
+                                                           </div>
+                                                    </div>
+                                                     `;
+    };
+
+    const notes = () => {
+      const url = 'https://stickynotes-1f5d0-default-rtdb.firebaseio.com/notes.json';
+
+      fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch data');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          notesContainer.innerHTML = "";
+
+          for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+              const note = data[key];
+              const noteText = note.content;
+              const noteID = note.id;
+              console.log(noteID)
+
+              const noteElement = createNewNoteElement(noteID, noteText);
+              notesContainer.innerHTML += noteElement;
+            }
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+        });
+    };
+
+    const createNewNote = () => {
+      const newNoteID = generateUniqueID();
+      const newNoteElement = createNewNoteElement(newNoteID, '');
+      notesContainer.innerHTML += newNoteElement;
+    };
+
+    function saveData(key) {
+      let text = document.getElementById(`note-${key}`).value;
+      console.log(text);
+
+      const jsonData = {
+        id: key,
+        content: text
+      };
+      
+       const url = `https://stickynotes-1f5d0-default-rtdb.firebaseio.com/notes/.json`;
+      
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(jsonData)
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log('Data added successful');
+          } else {
+            console.error('Failed to save data:', response.status);
+          }
+        })
+        .catch((error) => {
+          console.error('Error saving data:', error);
+        });
+    }
+
+
+    const editData = (noteID) => {
+      const text = document.getElementById(`note-${noteID}`).value;
+      console.log(text);
+
+      const jsonData = {
+        id: noteID,
+        content: text
+      };
+
+      const url = `https://stickynotes-1f5d0-default-rtdb.firebaseio.com/notes/${key}.json`;
+
+      fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(jsonData)
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log('Note updated successfully');
+          } else {
+            console.error('Failed to update note:', response.status);
+          }
+        })
+        .catch((error) => {
+          console.error('Error updating note:', error);
+        });
+    };
+
+
+    const deleteData = (key) => {
+      console.log('Deleting note with key:',key);
+      const  url = `https://stickynotes-1f5d0-default-rtdb.firebaseio.com/notes/${key}.json`;
+
+      fetch(url, {
+        method: 'DELETE',
+      })
+        .then((response) => {
+          if (response.ok) {
+            alert("are you sure you want to delete the note?")
+            console.log('Note deleted successfully');
+            const noteElement = document.getElementById(`note-container-${key}`);
+            if (noteElement) {
+              noteElement.remove();
+            }
+          } else {
+            console.error('Failed to delete note:', response.status);
+          }
+        })
+        .catch((error) => {
+          console.error('Error deleting note:', error);
+        });
+    };
+
+    window.onload = notes;
+    
+
+
+
+   </script>
+  </body>
+</html>

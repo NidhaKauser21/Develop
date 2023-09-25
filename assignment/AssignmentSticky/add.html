@@ -1,0 +1,54 @@
+// function saveData() {
+    // let ip = document.getElementById("note").value;
+    // console.log(ip);
+    // localStorage.setItem('notesData', ip)
+    // save = localStorage.getItem('notesData', ip)
+    // //   console.log(save)
+    // }
+
+
+    // function editData() {
+    // let ip = document.getElementById("note").value;
+    // // console.log(ip);
+    // localStorage.setItem('notesData', ip)
+    // save = localStorage.getItem('notesData', ip)
+    // //   console.log(save)
+    // }
+
+    // function deleteData() {
+    // let ip = document.getElementById("note").value;
+    // // console.log(ip);
+    // localStorage.setItem('notesData', ip)
+    // save = localStorage.getItem('notesData', ip)
+    // //   console.log(save)
+    // }
+
+
+
+    function generateRandomId() {
+        id = Math.floor(Math.random() * 1000);
+        return id;
+   }
+
+function saveData() {
+let ip = document.getElementById("note").value;
+
+// Check if there are existing notes in localStorage
+let notesData = JSON.parse(localStorage.getItem('notesData')) || [];
+
+// Generate a random ID for the new note
+let noteId = generateRandomId();
+
+// Create an object to store the note and its ID
+let newNote = {
+id: noteId,
+content: ip,
+};
+
+// Add the new note to the array
+notesData.push(newNote);
+
+// Save the updated array in localStorage
+localStorage.setItem('notesData', JSON.stringify(notesData));
+
+}

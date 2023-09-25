@@ -1,0 +1,149 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap'); */
+
+*{
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box; */
+    /* font-family: 'Caveat', cursive; */
+    /* background-color: #D980FA; */
+  }
+  
+ #body{
+    background-color: #D980FA;
+    
+  }
+
+  
+  
+  #container{
+  display: grid;
+  grid-template-columns: repeat(auto-fill,200px);
+  gap:24px;
+  padding:24px;
+  }
+  #up{
+    display: flex;
+    width:400px; 
+
+  }
+  
+#profile{
+  display: flex !important;
+}
+
+
+  #test{
+    display: flex;
+    justify-content:start;
+    flex-wrap: wrap;
+    /* grid-template-columns: repeat(auto-fill,200px); */
+    gap:10px;
+    padding:24px;
+    
+    /* display: flex;
+    flex-wrap: wrap; */
+
+    
+  }
+  
+  .sticky{
+  gap: 25px;
+  height: 250px;
+  padding: 20px;
+  border: none;
+  outline: none;
+  resize: none; 
+  border-radius: 5px;
+  font-size: 18px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #FFC312;
+  cursor:grab;
+ 
+  }
+
+  /* .sticky-container { 
+    width: 150px;
+    height: 150px;
+    background-color: yellow;
+    padding: 10px;
+    position: absolute;
+    cursor: grab;
+  }  */
+  
+  .dragging {
+    cursor: grabbing;
+  }
+
+/* #bg_color {
+  background-color: red;
+} */
+
+
+  .btn-add{
+  height: 200px;
+  border: none;
+  outline: none;
+  color:#fff;
+  font-size: 20px;
+  background-color:#9980FA;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+  }
+  .btn-add:hover{
+    background-color: #5758BB;
+    border-radius: 5px;
+  }
+  .action {
+    display: flex;
+    justify-content: flex-start;
+    /* align-items: center;   height set must
+    /* background-color: brown; */
+
+}
+
+.acbtn {
+    width: 70px;
+
+}
+.acbtn1{
+    background-color: #fff;
+    font-size: larger;
+    font-weight: bold;
+    width:50px;
+    height:30px;
+    background-color: rgb(174, 249, 100);
+    
+}
+
+.acbtn2{
+    background-color: #fff;
+    font-size: larger;
+    font-weight: bold;
+    width:50px;
+    height:30px;
+    background-color: rgb(124, 124, 243);
+}
+.acbtn3{
+    background-color: #fff;
+    font-size: larger;
+    font-weight: bold;
+    width:70px;
+    height:30px;
+    background-color: red;
+}
+.navbar {
+  background-color: #007bff;
+}
+
+#footer{
+  position: fixed;
+   bottom: 0;
+   width: 100%;
+   height: 30px;   
+   background: rgb(30, 32, 32);
+   
+}
+@media screen and (max-width: 800px) {
+  .left, .main, .right {
+    width: 100%;
+  }}
